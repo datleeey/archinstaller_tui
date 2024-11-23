@@ -1,0 +1,22 @@
+[
+    {
+        "name": "English",
+        "action": "language_action_english"
+    },
+    {
+        "name": "Russian",
+        "action": "language_action_russian"
+    },
+    {
+        "name": "Add more languages later...",
+        "action": "language_action_placeholder"
+    },
+    {
+        "name": "Submit",
+        "action": "language_action_placeholder"
+    },
+    {
+        "name": "Cancel",
+        "action": "language_cancel"
+    }
+]
