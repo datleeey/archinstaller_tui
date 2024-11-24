@@ -1,0 +1,116 @@
+[
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "npyscreen",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "npyscreen",
+        "description": "npyscreen",
+        "detail": "npyscreen",
+        "documentation": {}
+    },
+    {
+        "label": "language_cancel",
+        "importPath": "languages.functions",
+        "description": "languages.functions",
+        "isExtraImport": true,
+        "detail": "languages.functions",
+        "documentation": {}
+    },
+    {
+        "label": "load_buttons_from_config",
+        "importPath": "functions.load_from_config",
+        "description": "functions.load_from_config",
+        "isExtraImport": true,
+        "detail": "functions.load_from_config",
+        "documentation": {}
+    },
+    {
+        "label": "add_buttons_to_menu",
+        "importPath": "functions.add_buttons_to_menu",
+        "description": "functions.add_buttons_to_menu",
+        "isExtraImport": true,
+        "detail": "functions.add_buttons_to_menu",
+        "documentation": {}
+    },
+    {
+        "label": "add_buttons_to_menu",
+        "kind": 2,
+        "importPath": "functions.add_buttons_to_menu",
+        "description": "functions.add_buttons_to_menu",
+        "peekOfCode": "def add_buttons_to_menu(self):\n        \"\"\"\n        Добавляет кнопки из конфигурации в меню.\n        \"\"\"\n        for button in self.menu_buttons:\n            self.menu.values.append(button[\"name\"])",
+        "detail": "functions.add_buttons_to_menu",
+        "documentation": {}
+    },
+    {
+        "label": "load_buttons_from_config",
+        "kind": 2,
+        "importPath": "functions.load_from_config",
+        "description": "functions.load_from_config",
+        "peekOfCode": "def load_buttons_from_config(self, config_path):\n    \"\"\"\n    Загружает список кнопок из JSON-файла.\n    \"\"\"\n    with open(config_path, \"r\") as file:\n        return json.load(file)",
+        "detail": "functions.load_from_config",
+        "documentation": {}
+    },
+    {
+        "label": "load_buttons_from_config",
+        "kind": 2,
+        "importPath": "languages.functions",
+        "description": "languages.functions",
+        "peekOfCode": "def load_buttons_from_config(self, config_path):\n    \"\"\"\n    Загружает список кнопок из JSON-файла.\n    \"\"\"\n    with open(config_path, \"r\") as file:\n        return json.load(file)\ndef language_cancel(self):\n    self.parentApp.switchForm(\"MAIN\")",
+        "detail": "languages.functions",
+        "documentation": {}
+    },
+    {
+        "label": "language_cancel",
+        "kind": 2,
+        "importPath": "languages.functions",
+        "description": "languages.functions",
+        "peekOfCode": "def language_cancel(self):\n    self.parentApp.switchForm(\"MAIN\")",
+        "detail": "languages.functions",
+        "documentation": {}
+    },
+    {
+        "label": "language_actions",
+        "kind": 2,
+        "importPath": "main_menu.functions",
+        "description": "main_menu.functions",
+        "peekOfCode": "def language_actions(self):\n    self.parentApp.switchForm(\"Languages\")",
+        "detail": "main_menu.functions",
+        "documentation": {}
+    },
+    {
+        "label": "MyApp",
+        "kind": 6,
+        "importPath": "firstintarface",
+        "description": "firstintarface",
+        "peekOfCode": "class MyApp(npyscreen.NPSAppManaged):\n    def onStart(self):\n        self.addForm('MAIN', MainForm)\n        self.addForm('LANGUAGES', LanguageForm)\nclass MainForm(npyscreen.Form):\n    def create(self):\n        # Создаем меню\n        self.menu = self.add(\n            npyscreen.BoxTitle,\n            name=\"Arch Install\",",
+        "detail": "firstintarface",
+        "documentation": {}
+    },
+    {
+        "label": "MainForm",
+        "kind": 6,
+        "importPath": "firstintarface",
+        "description": "firstintarface",
+        "peekOfCode": "class MainForm(npyscreen.Form):\n    def create(self):\n        # Создаем меню\n        self.menu = self.add(\n            npyscreen.BoxTitle,\n            name=\"Arch Install\",\n            max_height=15,\n            max_width=30,\n            relx=1,\n            rely=1,",
+        "detail": "firstintarface",
+        "documentation": {}
+    },
+    {
+        "label": "LanguageForm",
+        "kind": 6,
+        "importPath": "firstintarface",
+        "description": "firstintarface",
+        "peekOfCode": "class LanguageForm(npyscreen.Form):\n    def create(self):\n        self.menu2 = self.add(\n            npyscreen.BoxTitle,\n            name=\"Additional Options\",\n            max_height=15,\n            max_width=50,\n            relx=33,\n            rely=1,\n        )",
+        "detail": "firstintarface",
+        "documentation": {}
+    }
+]

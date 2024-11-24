@@ -1,4 +1,4 @@
-import npyscreen
+import json
 
 def load_buttons_from_config(self, config_path):
     """
@@ -6,6 +6,3 @@ def load_buttons_from_config(self, config_path):
     """
     with open(config_path, "r") as file:
         return json.load(file)
-
-def language_cancel(self):
-    self.parentApp.switchForm("MAIN")
