@@ -3,6 +3,8 @@ import json
 from languages.functions import language_cancel
 from functions.load_from_config import load_buttons_from_config
 from functions.add_buttons_to_menu import add_buttons_to_menu
+from languages.functions import menu_languages
+
 
 class MyApp(npyscreen.NPSAppManaged):
     def onStart(self):
@@ -31,52 +33,22 @@ class MainForm(npyscreen.Form):
             rely=1,
         )
 
-        self.menu_buttons = self.load_buttons_from_config("./main_menu/mainmenu.json")
-        self.add_buttons_to_menu()
+        self.menu_buttons = load_buttons_from_config("./main_menu/mainmenu.json")
+        add_buttons_to_menu(self.menu, self.menu_buttons)
 
-    #     # Загружаем кнопки из конфигурации
-    #     self.menu2_buttons = self.load_buttons_from_config("./languages/languages_config.json")
-    #     # Добавляем кнопки в меню
-    #     self.add_buttons_to_menu()
+        self.menu.when_value_edited = self.handle_menu_selection
 
-    #     # Привязываем обработчик выбора
-    #     self.menu2.when_value_edited = self.handle_menu2_selection
+    def handle_menu_selection(self):
+        """
+        Обрабатывает выбор кнопки в меню.
+        """
+        action = self.menu_buttons[self.menu.value].get("action")  # Получаем действие
 
-    # def handle_menu2_selection(self):
-    #     """
-    #     Обрабатывает выбор в меню 2 и выполняет соответствующее действие.
-    #     """
-    #     selected_index = self.menu2.value
-    #     if selected_index is not None:
-    #         selected_button = self.menu2_buttons[selected_index]
-    #         action_name = selected_button["action"]
-
-    #         # Выполняем действие в зависимости от action
-    #         if action_name == "language_cancel":
-    #             language_cancel(self)  # Передаем текущую форму в функцию
-    #         elif hasattr(self, action_name):
-    #             action_method = getattr(self, action_name)
-    #             action_method()
-    #         else:
-    #             npyscreen.notify_confirm(f"Action '{action_name}' is not implemented!")
-
-    # def language_action_english(self):
-    #     """
-    #     Метод для кнопки "English".
-    #     """
-    #     npyscreen.notify_confirm("English selected!")
-
-    # def language_action_russian(self):
-    #     """
-    #     Метод для кнопки "Russian".
-    #     """
-    #     npyscreen.notify_confirm("Russian selected!")
-
-    # def language_action_placeholder(self):
-    #     """
-    #     Метод-заглушка для дополнительных кнопок.
-    #     """
-    #     npyscreen.notify_confirm("This action is not implemented yet.")
+        match action:
+            case "menu_languages":
+                self.parentApp.switchForm("LANGUAGES")  # Переключаемся на форму LANGUAGES
+            case _:
+                npyscreen.notify_confirm(f"Action '{action}' is not implemented!")
 
 class LanguageForm(npyscreen.Form):
     def create(self):
@@ -98,7 +70,23 @@ class LanguageForm(npyscreen.Form):
             rely=1,
         )
 
-        self.menu2_buttons = self.load_buttons_from_config("./languages/languages_config.json")
+        self.menu_buttons = load_buttons_from_config("./main_menu/mainmenu.json")
+        add_buttons_to_menu(self.menu, self.menu_buttons)
+        self.menu2_buttons = load_buttons_from_config("./languages/languages_config.json")
+        add_buttons_to_menu(self.menu2, self.menu2_buttons)
+
+        
+    def handle_menu_selection(self):
+        """
+        Обрабатывает выбор кнопки в меню.
+        """
+        action2 = self.menu2_buttons[self.menu2.value].get("action")  # Получаем действие
+        
+        match action2:
+            case "language_cancel":
+                self.parentApp.switchForm("MAIN")
+            case _:
+                npyscreen.notify_confirm(f"Action '{action}' is not implemented!")
 
 
 if __name__ == "__main__":

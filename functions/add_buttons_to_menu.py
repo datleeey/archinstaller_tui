@@ -1,8 +1,13 @@
+def add_buttons_to_menu(menu, buttons):
+    """
+    Добавляет кнопки из конфигурации в указанное меню.
+    """
+    if not isinstance(buttons, list):
+        raise ValueError("Buttons must be a list.")
 
-
-def add_buttons_to_menu(self):
-        """
-        Добавляет кнопки из конфигурации в меню.
-        """
-        for button in self.menu_buttons:
-            self.menu.values.append(button["name"])
+    for button in buttons:
+        if "name" in button:
+            menu.values.append(button["name"])
+        else:
+            raise ValueError("Each button must have a 'name' key.")
+    menu.display()

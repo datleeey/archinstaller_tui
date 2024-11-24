@@ -1,5 +1,8 @@
 import npyscreen
 
+def menu_languages(self):
+    self.parentApp.switchForm("LANGUAGES")
+
 def load_buttons_from_config(self, config_path):
     """
     Загружает список кнопок из JSON-файла.
