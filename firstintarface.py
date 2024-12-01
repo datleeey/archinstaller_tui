@@ -5,6 +5,31 @@ from functions.load_from_config import load_buttons_from_config
 from functions.add_buttons_to_menu import add_buttons_to_menu
 from languages.functions import menu_languages
 
+CONFIG_FILE = "config.json"
+
+default_config = {
+    "language": None,
+    "mirror_region": None,
+    "disk": None,
+    "boot_part": None,
+    "root_part": None,
+    "home_part": None,
+    "swap": None,
+    "hostname": None,
+    "root_password": None,
+    "user_account": {
+        "username": None,
+        "password": None
+    },
+    "profile": None,
+    "kernel": None,
+    "additional_repositories": []
+}
+
+def initialize_config():
+    with open(CONFIG_FILE, "w") as f:
+        json.dump(default_config, f, indent=4)
+    print(f"Конфигурационный файл перезаписан: {CONFIG_FILE}")
 
 class MyApp(npyscreen.NPSAppManaged):
     def onStart(self):
@@ -13,7 +38,6 @@ class MyApp(npyscreen.NPSAppManaged):
 
 class MainForm(npyscreen.Form):
     def create(self):
-        # Создаем меню
         self.menu = self.add(
             npyscreen.BoxTitle,
             name="Arch Install",
@@ -23,7 +47,6 @@ class MainForm(npyscreen.Form):
             rely=1,
         )
 
-        # Создаем дополнительное меню
         self.menu2 = self.add(
             npyscreen.BoxTitle,
             name="Additional Options",
@@ -77,9 +100,9 @@ class LanguageForm(npyscreen.Form):
 
         
     def handle_menu_selection(self):
-        """
-        Обрабатывает выбор кнопки в меню.
-        """
+        if self.menu2.value is None:  # Проверяем, что значение не None
+            return
+
         action2 = self.menu2_buttons[self.menu2.value].get("action")  # Получаем действие
         
         match action2:
@@ -90,5 +113,6 @@ class LanguageForm(npyscreen.Form):
 
 
 if __name__ == "__main__":
+    initialize_config()
     app = MyApp()
     app.run()

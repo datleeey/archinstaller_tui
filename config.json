@@ -1,0 +1,18 @@
+{
+    "language": null,
+    "mirror_region": null,
+    "disk": null,
+    "boot_part": null,
+    "root_part": null,
+    "home_part": null,
+    "swap": null,
+    "hostname": null,
+    "root_password": null,
+    "user_account": {
+        "username": null,
+        "password": null
+    },
+    "profile": null,
+    "kernel": null,
+    "additional_repositories": []
+}
