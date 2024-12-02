@@ -1,14 +1,8 @@
-import npyscreen
+def language_action_english():
+    return
 
-def menu_languages(self):
-    self.parentApp.switchForm("LANGUAGES")
+def language_action_russian():
+    return
 
-def load_buttons_from_config(self, config_path):
-    """
-    Загружает список кнопок из JSON-файла.
-    """
-    with open(config_path, "r") as file:
-        return json.load(file)
-
-def language_cancel(self):
-    self.parentApp.switchForm("MAIN")
+def language_cancel():
+    return
