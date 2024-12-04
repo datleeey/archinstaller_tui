@@ -1,0 +1,10 @@
+[
+    {
+        "name":"Languages",
+        "action":"language_menu_open"
+    },
+    {
+        "name":"Disk Settings",
+        "action":"disk_menu_open"
+    }
+]
