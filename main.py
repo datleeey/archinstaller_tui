@@ -1,19 +1,27 @@
-import npyscreen
-from forms.createform import Menu,BaseForm
+namespace LIBC_NAMESPACE_DECL {
+namespace cpp {
 
-class MyApp(npyscreen.NPSAppManaged):
-    def onStart(self):
-        self.addForm('MAIN', MainForm)
-        self.addForm('LANGUAGES', LanguageForm)
+// integer_sequence
+template <typename T, T... Ints> struct integer_sequence {
+  static_assert(cpp::is_integral_v<T>);
+  template <T Next> using append = integer_sequence<T, Ints..., Next>;
+};
 
-class MainForm(Menu):
-    def create(self):
-        super().create("mainmenu.json")
-    
-class LanguageForm(BaseForm):
-    def create(self):
-        return super().create("mainmenu.json", "languages/languages.json")
+namespace detail {
+template <typename T, int N> struct make_integer_sequence {
+  using type =
+      typename make_integer_sequence<T, N - 1>::type::template append<N>;
+};
+template <typename T> struct make_integer_sequence<T, -1> {
+  using type = integer_sequence<T>;
+};
+} // namespace detail
 
-if __name__ == "__main__":
-    app = MyApp()
-    app.run()
+template <typename T, int N>
+using make_integer_sequence =
+    typename detail::make_integer_sequence<T, N - 1>::type;
+
+} // namespace cpp
+} // namespace LIBC_NAMESPACE_DECL
+
+#endif // LLVM_LIBC_SRC___SUPPORT_CPP_UTILITY_INTEGER_SEQUENCE_H
